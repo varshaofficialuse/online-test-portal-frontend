@@ -175,7 +175,7 @@ export default function Tests() {
               <td>
               {/* Toggle AddTestForm */}
               <button 
-                className="btn btn-success"
+                className="add-q"
                 title="Add Questions"
                 onClick={() => setActiveTestId(t.id)}
               >

@@ -1,162 +1,104 @@
-/* add_test_form.css */
-
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-h2, h4 {
-  color: #333;
-}
-
-form {
-  background-color: #fdfdfd;
-  border-radius: 12px;
-  padding: 25px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.form-label {
-  font-weight: 500;
-  margin-bottom: 5px;
-  display: block;
-}
-
-input[type="text"],
-input[type="number"],
-textarea,
-select {
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  padding: 8px 12px;
+.add-questions-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-textarea {
-  resize: vertical;
-  min-height: 60px;
-}
-
-input[type="checkbox"] {
-  transform: scale(1.1);
-  margin-right: 5px;
-}
-
-.card {
-  border-radius: 10px;
-  background-color: #ffffff;
-  padding: 15px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-}
-
-.input-group {
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
-  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
 }
 
-.input-group input {
-  flex: 1;
+.modal-content {
+  background: #fff;
+  width: 90%;
+  max-width: 1000px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-.input-group button {
-  flex-shrink: 0;
-}
-
-.btn-outline-primary, 
-.btn-outline-success, 
-.btn-success, 
-.btn-secondary {
-  border-radius: 6px;
-  padding: 6px 14px;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.btn-outline-primary:hover,
-.btn-outline-success:hover {
-  background-color: #007bff1a;
-  border-color: #007bff;
-}
-
-.btn-success {
-  background: linear-gradient(135deg, #00b4d8, #0096c7);
-  color: #fff;
-  border: none;
-}
-
-.btn-success:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 150, 199, 0.3);
-}
-
-.btn-secondary {
-  background-color: #6c757d;
-  color: #fff;
-  border: none;
-}
-
-.btn-secondary:hover {
-  background-color: #5a6268;
-}
-
-button.active {
-  background-color: #28a745 !important;
-  color: #fff !important;
-}
-
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.col-md-4 {
-  flex: 1 1 30%;
-}
-
-.mb-3 {
+.question-row {
+  border: 1px solid #ddd;
+  border-radius: 8px;
   margin-bottom: 15px;
+  background: #fafafa;
 }
 
-.mb-2 {
-  margin-bottom: 10px;
+.question-header {
+  background: #f1f1f1;
+  border-bottom: 1px solid #ddd;
+  font-weight: 500;
 }
 
-.mt-2 {
-  margin-top: 10px;
+.question-body {
+  padding: 15px;
+  background: #fff;
+}
+.add-btn{
+  background-color: #17a2b8;
+  color: white;
+  border-radius: 10px;
+  font-size: 25px;
+  width: 70px;
+  border: none;
+}
+.add-btn:hover{
+  transition: ease 0.3s;
+  background-color: #117a8b;
+}
+.add-q-btn{
+  background: linear-gradient(270deg, #0c9454,  #089344); 
+  color:white;
+  border: none;
+  border-radius: 15px;
+
+
+}
+.cancel-btn {
+  background-color:  #f84040;
+  color:white;
+  border: none;
+  border-radius: 15px;
+
 }
 
-.d-flex {
+.cancel-btn:hover {
+  background-color: #dc3545;
+  color: #fff;
+    transition: background 0.3s;
+
+}
+.option-btn {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.3s, color 0.3s;
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.gap-2 {
-  gap: 8px;
+.option-btn.correct {
+  background-color:  #155724; /* light green */
+  color:white;
 }
 
-.gap-3 {
-  gap: 12px;
+.option-btn.correct:hover {
+  background-color: #28a745; /* dark green */
+  color: #fff;
 }
 
-.text-center {
-  text-align: center;
+.option-btn.wrong {
+  background-color: #e84008; /* light red */
+  
 }
 
-@media screen and (max-width: 768px) {
-  .row {
-    flex-direction: column;
-  }
-  .col-md-4 {
-    flex: 1 1 100%;
-  }
+.option-btn.wrong:hover {
+  background-color: #ec9214; /* dark red */
+  color: #fff;
 }

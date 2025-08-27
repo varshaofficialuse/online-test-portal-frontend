@@ -213,7 +213,7 @@
 }
 
 /* Buttons */
-.btn-success {
+.add-q {
   background: linear-gradient(135deg, #00b4d8, #0077b6);
   border: none;
   color: #fff;
@@ -222,7 +222,7 @@
   font-weight: 600;
   transition: all 0.3s ease;
 }
-.btn-success:hover {
+.add-q:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 118, 184, 0.3);
 }
