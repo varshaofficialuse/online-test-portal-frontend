@@ -1,0 +1,115 @@
+.quiz-dashboard-container {
+  max-width: 1200px;
+  margin: 100px auto;   /* centered horizontally */
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.quiz-title {
+  color: #222;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-align: center;
+  font-size: 24px;
+}
+
+.create-quiz-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.note-dropdown {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  min-width: 220px;
+}
+
+.create-quiz-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #00b4d8, #0096c7);
+  color: white;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.create-quiz-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 150, 199, 0.3);
+}
+
+.create-quiz-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ✅ Responsive card grid */
+.quiz-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* wider min width */
+  gap: 25px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.quiz-card {
+  background-color: #f6f5f5;
+  border-radius: 16px; /* smoother round */
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  padding: 22px 18px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.quiz-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.quiz-info p {
+  margin: 8px 0;
+  font-size: 15px;
+  color: #444;
+  line-height: 1.4;
+}
+
+.quiz-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+/* ✅ Custom button style (force override bootstrap if present) */
+.delete-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #f33347 !important; /* override bootstrap */
+  color: #fff !important;
+  border: none !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #d13747 !important;
+  transform: scale(1.05);
+}

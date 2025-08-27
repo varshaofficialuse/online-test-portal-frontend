@@ -1,0 +1,138 @@
+.notes-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.notes-container h4 {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* Form */
+.note-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+}
+
+.note-form:hover {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  background-color: #f6f5f5;
+  transform: translateY(-2px);
+}
+
+.note-input,
+.note-textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.note-textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+
+.note-btn {
+  width: 120px;
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Table */
+.notes-table-container {
+  overflow-x: auto;
+}
+
+.notes-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.notes-table th,
+.notes-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.notes-table th {
+  background-color: #007bff;
+  color: white;
+}
+
+.notes-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.notes-table tr:hover {
+  background-color: #f8f9f9;
+}
+
+/* Buttons */
+.btn-gap {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+.btn-info {
+  background-color: #17a2b8;
+  color: #fff;
+}
+.btn-info:hover {
+  background-color: #117a8b;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  color: #212529;
+}
+.btn-warning:hover {
+  background-color: #e0a800;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .note-form {
+    flex-direction: column;
+  }
+  .notes-table {
+    font-size: 12px;
+  }
+}

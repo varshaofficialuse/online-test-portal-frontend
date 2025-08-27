@@ -1,0 +1,4 @@
+.exam .timer { font-weight:600; color:#d9534f; }
+.options .btn { min-width:120px; }
+.option-correct { background: #d4edda; border-left:4px solid #28a745; }
+.option-wrong { background: #f8d7da; border-left:4px solid #dc3545; }

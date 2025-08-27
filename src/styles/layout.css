@@ -1,0 +1,87 @@
+.app { 
+  min-height:100vh; 
+  display:flex; 
+}
+
+/* ==== Sidebar ==== */
+.sidebar {
+  width:260px;
+  background: linear-gradient(160deg, #11998e, #2b7ef9, #6a11cb);
+  color: #fff;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+}
+
+.sidebar .brand { 
+  font-size:22px; 
+  font-weight:700; 
+  margin-bottom:10px; 
+}
+
+.sidebar .nav-link { 
+  color: rgba(255,255,255,0.9); 
+  padding:10px 12px; 
+  display:flex;
+  align-items:center;
+  gap:10px;
+  border-radius:8px; 
+  margin-bottom:6px; 
+  text-decoration:none;
+  transition: all 0.3s ease;
+}
+
+.sidebar .nav-link:hover, 
+.sidebar .nav-link.active { 
+  background: rgba(255,255,255,0.15); 
+  color:#fff; 
+  border-left:4px solid #fff;
+  padding-left:16px; /* adjust for border effect */
+}
+
+.sidebar .nav-icon {
+  font-size:1.2rem;
+  transition: transform 0.4s ease;
+}
+
+.sidebar .nav-link:hover .nav-icon {
+  transform: rotate(360deg);
+}
+
+.sidebar .signout { 
+  margin-top:auto; 
+}
+.sidebar .signout button{
+  background: linear-gradient(180deg, #78c4d3,  #2b7ef9); 
+  color: white;
+  letter-spacing: 2px;
+}
+
+/* ==== Main Content ==== */
+.main-content { 
+  background:#fff; 
+  min-height:100vh; 
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ==== Topbar ==== */
+.topbar { 
+  padding:20px; 
+  border-bottom:1px solid #eee; 
+  background: linear-gradient(90deg, #ede9e9, #78c4d3, #2b7ef9, #6a11cb); 
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.user-info { 
+  font-size:0.95rem; 
+  color:#fbf7f7;
+  font-weight:900; 
+}
+
+.content { 
+  padding:20px; 
+}

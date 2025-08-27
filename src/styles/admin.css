@@ -1,0 +1,60 @@
+/* admin.css */
+.admin-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 25px;
+  border-radius: 12px;
+  background:  #f6f5f5;;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.admin-container h4 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  color: #333;
+}
+
+.admin-input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.admin-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+}
+
+.admin-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(180deg,  #2b7ef9, #7d0ef5); 
+
+  color: #fff;
+  font-weight: 900;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.2s ease;
+  letter-spacing: 2px;
+}
+
+.admin-btn:hover {
+  background: #0056b3;
+}
+
+.message-success {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  color: #28a745;
+}

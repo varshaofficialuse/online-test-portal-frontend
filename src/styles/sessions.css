@@ -1,0 +1,117 @@
+/* Container */
+.sessions-container {
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2c3e50;
+}
+
+/* Section Titles */
+.sessions-container h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #34495e;
+  border-left: 5px solid #3498db;
+  padding-left: 10px;
+}
+
+/* Test Cards */
+.test-card {
+  width: 240px;
+  background:  #f6f5f5;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  padding: 16px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.test-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+.test-card h6 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #2c3e50;
+}
+
+.test-card p {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin-bottom: 12px;
+}
+
+/* Buttons */
+.btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: none;
+  transition: background 0.3s ease;
+    background: linear-gradient(150deg, #2b7ef9, #6a11cb); 
+
+}
+
+.btn-primary {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+}
+
+.btn-success {
+  background-color: #27ae60;
+  color: #fff;
+}
+
+.btn-success:hover {
+  background-color: #1e874b;
+}
+
+/* Questions Section */
+.questions-container {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+}
+
+.questions-container li {
+  margin-bottom: 20px;
+}
+
+.questions-container p {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+/* Options */
+.questions-container label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  color: #34495e;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: background 0.2s ease-in-out;
+}
+
+.questions-container input[type="radio"] {
+  accent-color: #3498db;
+}
+
+.questions-container label:hover {
+  background-color: #ecf6fd;
+}
