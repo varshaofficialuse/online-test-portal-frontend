@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 import { useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
@@ -11,6 +13,13 @@ export default function Quizzes({ testId }) {
   const [notes, setNotes] = useState([]);
   const [selectedNote, setSelectedNote] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+ 
+  const handleStartQuiz = (NoteId,quizId) => {
+    // Navigate to practice route
+    navigate(`/practice/${NoteId}/${quizId}`);
+  };
 
   const api = axios.create({
     baseURL: "http://127.0.0.1:8000",
@@ -114,11 +123,17 @@ export default function Quizzes({ testId }) {
 
             <div className="quiz-actions">
               <GenerateQuiz testId={testId} quizID={q.id} />
+               <button className="start-quiz-btn"   
+                 onClick={() => handleStartQuiz(q.note_id, q.id)}>
+                Start Quiz
+              </button>
+
               <button className=" delete-btn"  onClick={() => deleteQuiz(q.id)}>
                 {/* <i className="bi bi-trash"></i> */}
                  Delete
               </button>
             </div>
+           
           </div>
         ))}
       </div>

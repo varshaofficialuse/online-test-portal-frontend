@@ -9,7 +9,7 @@ export default function Layout() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector(s => s.auth.user);
-  console.log('-----------------user',user)
+  // console.log('-----------------user',user)
 
   return (
     <div className="app d-flex">
@@ -23,6 +23,10 @@ export default function Layout() {
           <NavLink to="/notes" className="nav-link">
             <i className="bi bi-journal-text nav-icon"></i> Notes
           </NavLink>
+{/* 
+          <NavLink to="/practice/:noteId/:quizId" className="nav-link">
+            <i className="bi  bi-mortarboard nav-icon"></i> Practice
+          </NavLink> */}
 
           <NavLink to="/quizzes" className="nav-link">
             <i className="bi bi-question-circle nav-icon"></i> Quizzes

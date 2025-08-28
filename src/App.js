@@ -13,6 +13,7 @@ import Quizzes from './components/Quizzes';
 import Tests from './components/Tests';
 import Sessions from './components/Sessions';
 import Admin from './components/Admin';
+import StartQuiz from './components/StartQuiz'
 
 
 function App(){
@@ -30,6 +31,9 @@ function App(){
         <Route path="tests" element={<Tests/>} />
         <Route path="sessions" element={<Sessions/>} />
         <Route path="analytics" element={<Analytics/>} />
+        <Route path="practice" element={<StartQuiz/>} />
+        <Route path="practice/:noteId/:quizId" element={<StartQuiz />} />
+
       </Route>
       <Route path="*" element={<Navigate to='/' />} />
     </Routes>
