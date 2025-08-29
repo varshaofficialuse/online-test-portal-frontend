@@ -16,6 +16,9 @@ export default function StartQuiz() {
   const [answers, setAnswers] = useState({});
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showWarning, setShowWarning] = useState(false);  // ✅ new state
+
+  
 
   // Fetch questions
   const fetchQuestions = async () => {
@@ -74,8 +77,11 @@ export default function StartQuiz() {
       <div className="quiz-container">
         <h2 className="quiz-title">Quiz Results</h2>
         <p className="quiz-score">
-          Score: {result.score} / {result.total}
+             <b> Score:</b> {result.score} / {result.total}  
         </p>
+        <p><b> Percentag : </b>  {((result.score / result.total) * 100).toFixed(2)}%
+</p>
+
         {result.score === result.total && (
           <p className="congrats">🎉 Great job! All answers correct!</p>
         )}
@@ -151,28 +157,54 @@ export default function StartQuiz() {
               ))}
             </div>
           </div>
+        <div className="quiz-navigation">
+          <button
+            className="nav-btn"
+            disabled={current === 0}
+            onClick={() => {
+              setShowWarning(false);
+              setCurrent(current - 1);
+            }}
+          >
+            Prev
+          </button>
 
-          <div className="quiz-navigation">
+          {current + 1 < questions.length ? (
             <button
               className="nav-btn"
-              disabled={current === 0}
-              onClick={() => setCurrent(current - 1)}
+              onClick={() => {
+                if (answers[question.id] === undefined) {
+                  setShowWarning(true);  // ✅ show warning
+                } else {
+                  setShowWarning(false);
+                  setCurrent(current + 1);
+                }
+              }}
             >
-              Prev
+              Next
             </button>
-            {current + 1 < questions.length ? (
-              <button
-                className="nav-btn"
-                onClick={() => setCurrent(current + 1)}
-              >
-                Next
-              </button>
-            ) : (
-              <button className="submit-btn" onClick={handleSubmit}>
-                Submit Quiz
-              </button>
-            )}
-          </div>
+          ) : (
+            <button
+              className="submit-btn"
+              onClick={() => {
+                if (answers[question.id] === undefined) {
+                  setShowWarning(true);  // ✅ show warning
+                } else {
+                  setShowWarning(false);
+                  handleSubmit();
+                }
+              }}
+            >
+              Submit Quiz
+            </button>
+          )}
+        </div>
+
+        {/* ✅ Warning message */}
+        {showWarning && (
+          <p className="warning-text">⚠️ Please select an option before continuing.</p>
+        )}
+
         </>
       ) : (
         <p>No questions available.</p>

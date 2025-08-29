@@ -141,3 +141,10 @@
   font-weight: bold;
   text-align: center;
 }
+.warning-text {
+  color: #d9534f; /* red */
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+}
