@@ -1,8 +1,9 @@
 .quiz-dashboard-container {
   max-width: 1200px;
-  margin: 100px auto;   /* centered horizontally */
+  margin: auto;   /* centered horizontally */
   padding: 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color:  #f6f5f5;
 }
 
 .quiz-title {
@@ -37,7 +38,6 @@
   border-radius: 8px;
   font-weight: 600;
   background: linear-gradient(135deg, #00b4d8, #0096c7);
-  color: white;
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
@@ -63,9 +63,8 @@
 }
 
 .quiz-card {
-  background-color: #f6f5f5;
   border-radius: 16px; /* smoother round */
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 15px 16px rgba(0,0,0,0.08);
   padding: 22px 18px;
   text-align: center;
   display: flex;
@@ -76,12 +75,13 @@
 
 .quiz-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
 }
 
 .quiz-info p {
   margin: 8px 0;
-  font-size: 15px;
+  font-size: 25px;
+  font-weight:500 ;
   color: #444;
   line-height: 1.4;
 }
@@ -133,6 +133,8 @@
 .start-quiz-btn:hover {
   background: #1d4ed8;       /* Darker blue on hover */
   box-shadow: 0 6px 12px rgba(29, 78, 216, 0.4);
+  transform: scale(1.05);
+
 }
 
 .start-quiz-btn:active {

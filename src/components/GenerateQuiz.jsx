@@ -45,7 +45,7 @@ export default function GenerateQuiz({ testId, quizID }) {
         </>
       ) : (
         <>
-        Generate Questions
+        Generate Test Questions
         </>
       )}
     </button>

@@ -6,6 +6,8 @@
   display: flex;
   flex-direction: column;
   gap: 50px;
+    background-color:  #f6f5f5;
+
 }
 
 .notes-container h4 {
@@ -26,7 +28,6 @@
 
 .note-form:hover {
   transition: background-color 0.3s ease, transform 0.3s ease;
-  background-color: #f6f5f5;
   transform: translateY(-2px);
 }
 
@@ -63,13 +64,14 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
+  
 }
 
 .notes-table th,
 .notes-table td {
   border: 1px solid #ddd;
   padding: 10px;
-  text-align: left;
+  text-align: center;
 }
 
 .notes-table th {
@@ -89,7 +91,8 @@
 .btn-gap {
   display: flex;
   gap: 10px;
-  align-items: center;
+  justify-content: center;
+  
 }
 
 .btn-circle {

@@ -110,8 +110,8 @@ export default function Notes() {
                 <td>{note.title}</td>
                 <td>{note.content}</td>
                 <td className="btn-gap">
-                  <button className="btn-circle btn-info" title="View"><i className="bi bi-eye"></i></button>
-                  <button className="btn-circle btn-warning" title="Edit"><i className="bi bi-pencil"></i></button>
+                  {/* <button className="btn-circle btn-info" title="View"><i className="bi bi-eye"></i></button> */}
+                  {/* <button className="btn-circle btn-warning" title="Edit"><i className="bi bi-pencil"></i></button> */}
                   <button className="btn-circle btn-danger" title="Delete" onClick={() => deleteNote(note.id)}>
                     <i className="bi bi-trash"></i>
                   </button>

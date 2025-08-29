@@ -118,8 +118,12 @@ export default function Quizzes({ testId }) {
         {quizzes.map((q) => (
           <div key={q.id} className="quiz-card">
             <div className="quiz-info">
-              <p><strong> {q.title || "N/A"}</strong></p>
-            </div>
+            <strong>
+                {q.title
+                  ? q.title.charAt(0).toUpperCase() + q.title.slice(1)
+                  : "N/A"}
+              </strong>  
+              </div>
 
             <div className="quiz-actions">
               <GenerateQuiz testId={testId} quizID={q.id} />
