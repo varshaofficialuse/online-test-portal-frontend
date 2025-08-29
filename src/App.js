@@ -7,14 +7,12 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './components/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
-import Analytics from './components/Analytics';
 import Notes from './components/Notes';
 import Quizzes from './components/Quizzes';
 import Tests from './components/Tests';
 import Sessions from './components/Sessions';
 import Admin from './components/Admin';
 import StartQuiz from './components/StartQuiz'
-import UpdateTestForm from './components/UpdateTestForm';
 
 
 function App(){
@@ -31,7 +29,6 @@ function App(){
         <Route path="quizzes" element={<Quizzes/>} />
         <Route path="tests" element={<Tests/>} />
         <Route path="sessions" element={<Sessions/>} />
-        <Route path="analytics" element={<Analytics/>} />
         <Route path="practice" element={<StartQuiz/>} />
         <Route path="practice/:noteId/:quizId" element={<StartQuiz />} />
 

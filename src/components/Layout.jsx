@@ -40,9 +40,7 @@ export default function Layout() {
             <i className="bi bi-camera-video nav-icon"></i> Sessions
           </NavLink>
 
-          <NavLink to="/analytics" className="nav-link">
-            <i className="bi bi-graph-up nav-icon"></i> Analytics
-          </NavLink>
+          
 
           <NavLink to="/admin" className="nav-link">
             <i className="bi bi-person-gear nav-icon"></i> Admin

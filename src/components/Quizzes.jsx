@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
-import GenerateQuiz from "./GenerateQuiz";
 import "../styles/quizzes.css";
 
 export default function Quizzes({ testId }) {
@@ -126,7 +125,7 @@ export default function Quizzes({ testId }) {
               </div>
 
             <div className="quiz-actions">
-              <GenerateQuiz testId={testId} quizID={q.id} />
+
                <button className="start-quiz-btn"   
                  onClick={() => handleStartQuiz(q.note_id, q.id)}>
                 Start Quiz

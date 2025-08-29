@@ -5,6 +5,8 @@ import toast from "react-hot-toast";
 import "../styles/tests.css";
 import AddTestForm from "./AddTestForm";
 import UpdateTestForm from "./UpdateTestForm";
+import GenerateQuiz from "./GenerateQuiz";
+
 
 const API_URL = "http://127.0.0.1:8000/";
 
@@ -285,6 +287,8 @@ export default function Tests() {
         </tbody>
       </table>
       {/* Modal */}
+
+      
       {activeTestId && (
         <div className="modal-overlay">
           <div className="modal-content modal-lg">
