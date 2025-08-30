@@ -1,8 +1,11 @@
+/* ---------------------------
+   Container & General Layout
+---------------------------- */
 .analytics-container {
   max-width: 800px;
   margin: 20px auto;
   padding: 25px;
-  background: #ffffff;
+  background:#ebecee;
   border-radius: 12px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
   font-family: 'Segoe UI', sans-serif;
@@ -16,12 +19,15 @@
   font-weight: bold;
 }
 
+/* ---------------------------
+   Stats Cards
+---------------------------- */
 .stats {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 25px;
   flex-wrap: wrap;
   gap: 15px;
+  margin-bottom: 25px;
 }
 
 .stat-card {
@@ -30,7 +36,7 @@
   background: #f0f8ff;
   border-radius: 10px;
   padding: 15px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .stat-label {
@@ -46,19 +52,29 @@
   font-weight: bold;
 }
 
+/* ---------------------------
+   Chart Styles
+---------------------------- */
 .chart {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
 }
 
-/* Highcharts adjustments */
 .highcharts-container {
   font-family: 'Segoe UI', sans-serif !important;
 }
 
-/* Responsive */
+/* ---------------------------
+   Responsive Adjustments
+---------------------------- */
 @media screen and (max-width: 768px) {
-  .stats { flex-direction: column; align-items: center; }
-  .stat-card { flex: 1 1 80%; }
+  .stats {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-card {
+    flex: 1 1 80%;
+  }
 }

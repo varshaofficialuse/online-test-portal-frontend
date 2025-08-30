@@ -61,11 +61,10 @@ export default function Analytics({ testId }) {
 
   return (
     <div className="card p-3 mt-3">
-      <h5>Test Analytics</h5>
-      <p><strong>Total Attempts:</strong> {data.attempts}</p>
-      <p><strong>Max Score:</strong> {data.max_score}</p>
+      {/* <p><strong>Max Score:</strong> {data.max_score}</p> */}
+      <p><strong>Max Score  :  </strong> 100%</p>
       {data.student_percentage !== null && (
-        <p><strong>Your Score:</strong> {data.student_percentage.toFixed(2)}%</p>
+        <p><strong>Your Score  :  </strong> {data.student_percentage.toFixed(2)}%</p>
       )}
 
       <HighchartsReact highcharts={Highcharts} options={pieOptions} />

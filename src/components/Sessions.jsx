@@ -84,7 +84,7 @@ export default function Sessions() {
       );
 
       toast.success(
-        `Test submitted! Score: ${res.data.score} / ${res.data.max_score}`
+        'Test submitted! Score'
       );
 
       setSubmittedTestId(currentTest.id); // 👈 store submitted test ID
@@ -150,8 +150,8 @@ export default function Sessions() {
 
       {/* Current Test Questions */}
       {currentTest && (
-        <div className="card p-3 mt-3">
-          <h5>{currentTest.title}</h5>
+        <div className="card p-3 mt-3 ">
+          <h5 style={{"text-align": "center"}}>{currentTest.title}</h5>
           <ol>
             {questions.map((q, idx) => (
               <li key={q.id} className="mb-3">
@@ -177,11 +177,12 @@ export default function Sessions() {
               </li>
             ))}
           </ol>
+          <div>  
           <button className="btn btn-success me-2" onClick={submitTest}>
             Submit Test
           </button>
           <button
-            className="btn btn-secondary"
+            className="btn btn-secondary "
             onClick={() => {
               setCurrentTest(null);
               setQuestions([]);
@@ -190,8 +191,10 @@ export default function Sessions() {
           >
             Back
           </button>
+          </div>
         </div>
       )}
+      <br/><br/>
       {submittedTestId && (
   <div className="mt-4">
     <h4>Analytics</h4>
