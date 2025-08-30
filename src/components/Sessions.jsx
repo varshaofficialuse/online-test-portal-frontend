@@ -113,6 +113,8 @@ export default function Sessions() {
             const endTime = new Date(t.end_at);
             const isExpired = now > endTime;
             const isNotStarted = now < startTime;
+            const isSubmitted = t.id === submittedTestId; // 👈 check if already submitted
+
 
             return (
               <div
@@ -129,18 +131,16 @@ export default function Sessions() {
                 </p>
                 <button
                   className="btn btn-primary w-100"
-                  disabled={isExpired || isNotStarted}
+                  disabled={isExpired || isNotStarted || isSubmitted} // 👈 disable after submission
+
                   onClick={() => startTest(t)}
                   style={{
                     cursor: isExpired || isNotStarted ? "not-allowed" : "pointer",
                     backgroundColor: isExpired ? "#6c757d" : undefined,
                   }}
                 >
-                  {isExpired
-                    ? "Expired"
-                    : isNotStarted
-                    ? "Not Started"
-                    : "Start Test"}
+                {isSubmitted ? "Submitted" : isExpired ? "Expired" : isNotStarted ? "Not Started" : "Start Test"}
+
                 </button>
               </div>
             );

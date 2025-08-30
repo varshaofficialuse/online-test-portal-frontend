@@ -2,63 +2,22 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
 
 const API_URL = "http://127.0.0.1:8000/";
 
 export default function Analytics({ testId }) {
+  const token = useSelector((s) => s.auth.token);
   const [data, setData] = useState(null);
-  const [chartOptions, setChartOptions] = useState({});
 
   const fetchAnalytics = async () => {
     try {
-      const res = await axios.get(`${API_URL}analytics/tests/${testId}`);
-      setData(res.data);
-
-      // Count correct and incorrect answers
-      const correct = res.data.question_stats.filter(q => q.correct_rate === 1).length;
-      const incorrect = res.data.question_stats.filter(q => q.correct_rate < 1).length;
-
-      // Set chart options
-      setChartOptions({
-        chart: {
-          type: "pie"
-        },
-        title: {
-          text: "Question-wise Correct vs Incorrect"
-        },
-        tooltip: {
-          pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
-        },
-        accessibility: {
-          point: {
-            valueSuffix: "%"
-          }
-        },
-        plotOptions: {
-          pie: {
-            allowPointSelect: true,
-            cursor: "pointer",
-            dataLabels: {
-              enabled: true,
-              format: "<b>{point.name}</b>: {point.percentage:.1f} %"
-            }
-          }
-        },
-        series: [
-          {
-            name: "Questions",
-            colorByPoint: true,
-            data: [
-              { name: "Correct", y: correct, color: "#4CAF50" },
-              { name: "Incorrect", y: incorrect, color: "#F44336" }
-            ]
-          }
-        ]
+      const res = await axios.get(`${API_URL}analytics/tests/${testId}`, {
+        headers: { Authorization: `Bearer ${token}` },
       });
+      setData(res.data);
     } catch (err) {
       console.error(err);
-      toast.error("Failed to fetch analytics!");
     }
   };
 
@@ -68,17 +27,48 @@ export default function Analytics({ testId }) {
 
   if (!data) return <p>Loading analytics...</p>;
 
+  // total questions
+  const totalQuestions = data.question_stats.length;
+
+  // student correct/incorrect count
+  const correctCount = data.student_percentage
+    ? Math.round((data.student_percentage / 100) * totalQuestions)
+    : 0;
+  const incorrectCount = totalQuestions - correctCount;
+
+  const pieOptions = {
+    chart: { type: "pie" },
+    title: { text: "Your Performance" },
+    tooltip: { pointFormat: "<b>{point.y}</b> ({point.percentage:.1f}%)" },
+    plotOptions: {
+      pie: {
+        allowPointSelect: true,
+        cursor: "pointer",
+        dataLabels: { enabled: true, format: "{point.name}: {point.y}" },
+      },
+    },
+    series: [
+      {
+        name: "Questions",
+        colorByPoint: true,
+        data: [
+          { name: "Correct", y: correctCount, color: "#007bff" }, // blue
+          { name: "Incorrect", y: incorrectCount, color: "#17a2b8" }, // sky blue
+        ],
+      },
+    ],
+  };
+
   return (
-    <div className="analytics-container">
-      <h4>Test Analytics</h4>
-      <div className="stats">
-        <p><strong>Average Score:</strong> {data.avg_score}</p>
-        <p><strong>Max Score:</strong> {data.max_score}</p>
-        <p><strong>Total Attempts:</strong> {data.attempts}</p>
-      </div>
-      <div className="chart">
-        {chartOptions.series && <HighchartsReact highcharts={Highcharts} options={chartOptions} />}
-      </div>
+    <div className="card p-3 mt-3">
+      <h5>Test Analytics</h5>
+      <p><strong>Total Attempts:</strong> {data.attempts}</p>
+      <p><strong>Max Score:</strong> {data.max_score}</p>
+      {data.student_percentage !== null && (
+        <p><strong>Your Score:</strong> {data.student_percentage.toFixed(2)}%</p>
+      )}
+
+      <HighchartsReact highcharts={Highcharts} options={pieOptions} />
     </div>
   );
 }
