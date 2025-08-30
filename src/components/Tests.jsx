@@ -27,6 +27,13 @@ export default function Tests() {
 
   const [testsHasQuestions, setTestsHasQuestions] = useState({}); // { testId: true/false }
 
+const [quizzes, setQuizzes] = useState([]);
+const [selectedQuiz, setSelectedQuiz] = useState("");
+const [createdTestId, setCreatedTestId] = useState(null);
+const [quizGenerated, setQuizGenerated] = useState(false);
+
+
+
   useEffect(() => {
     const fetchAllQuestions = async () => {
       const updated = {};
@@ -94,6 +101,8 @@ export default function Tests() {
       );
 
       setTests([...tests, res.data]);
+      setCreatedTestId(res.data.id);
+
       setTitle("");
       setDescription("");
       setStartAt("");
@@ -123,11 +132,31 @@ export default function Tests() {
       toast.error("Failed to delete test!");
     }
   };
+  const fetchQuizzes = async () => {
+    try {
+      const res = await axios.get(`${API_URL}quiz/quizzes/`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setQuizzes(res.data);
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to fetch quizzes");
+    }
+  };
 
   useEffect(() => {
     fetchTests();
     fetchNotes();
+    fetchQuizzes(); // new
+
   }, []);
+  useEffect(() => {
+  if (createdTestId) {
+    setQuizGenerated(false); // reset for each new test
+    setSelectedQuiz("");     // also reset dropdown
+  }
+}, [createdTestId]);
+
 
   useEffect(() => {
     fetchTests();
@@ -223,6 +252,42 @@ export default function Tests() {
         </div>
       </div>
 
+      {createdTestId && !quizGenerated && (
+  <div className="generate-quiz-section" style={{ marginTop: "15px" }}>
+    <label>
+      Do you want to generate the Test Questions from quiz? If Yes, select quiz from dropdown :
+      <select
+        value={selectedQuiz || ""}
+        onChange={(e) => setSelectedQuiz(e.target.value)}
+      >
+        <option value="">No</option>
+        {quizzes.map((q) => (
+          <option key={q.id} value={q.id}>
+            {q.title}
+          </option>
+        ))}
+      </select>
+    </label>
+
+    {selectedQuiz && (
+      <GenerateQuiz
+        testId={createdTestId}
+        quizID={selectedQuiz}
+        onGenerated={() => {
+          fetchTests();
+          setQuizGenerated(true); // hide after generation
+        }}
+      />
+    )}
+  </div>
+)}
+
+
+
+
+
+
+
       <h4 className="mt-4">All Tests</h4>
       <table className="tests-table">
         <thead>
@@ -306,8 +371,8 @@ export default function Tests() {
             <div className="modal-body">
               {modalMode === "add" ? (
                 <AddTestForm
-                  noteID={activeTestId}
-                  closeForm={() => setActiveTestId(null)}
+                  testID={activeTestId}
+                  closeForm={() =>{ setActiveTestId(null),fetchTests()}}
                 />
               ) : (
                 <UpdateTestForm

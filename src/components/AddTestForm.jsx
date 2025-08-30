@@ -70,7 +70,7 @@ const AddQuestionsForm = ({ testID, closeForm }) => {
     setLoading(true);
 
     try {
-      await api.post(`/tests/${testID}/add-questions`, { questions });
+      await api.post(`/tests/${testID}/create-manually`, { questions });
       toast.success("Questions added successfully!");
       setQuestions([]);
       closeForm();
