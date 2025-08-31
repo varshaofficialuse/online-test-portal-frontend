@@ -16,7 +16,7 @@ export default function Login() {
      let res=await dispatch(login(form));
     if (res.meta && res.meta.requestStatus === 'fulfilled') {
       // navigate('/dashboard');
-        window.location.href = "/dashboard"; 
+        window.location.href = "/sessions"; 
     }
   };
 

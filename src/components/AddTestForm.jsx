@@ -177,7 +177,8 @@ const AddQuestionsForm = ({ testID, closeForm }) => {
                     <div>
                         <label className="form-label">Options</label>
                         {q.options.map((opt, oIndex) => (
-                        <div key={oIndex} className="input-group mb-2">
+                        <div key={oIndex} className="input-group mb-2 gap-space">
+                          <div className="input-box"> 
                             <input
                             type="text"
                             value={opt}
@@ -187,6 +188,8 @@ const AddQuestionsForm = ({ testID, closeForm }) => {
                             className="form-control"
                             placeholder={`Option ${oIndex + 1}`}
                             />
+                            </div>
+                           <div>
                             <button
                             type="button"
                             className={`option-btn ${
@@ -196,6 +199,7 @@ const AddQuestionsForm = ({ testID, closeForm }) => {
                             >
                             <i className="bi bi-check-circle"></i>
                             </button>
+                            </div>
                         </div>
                         ))}
                     </div>

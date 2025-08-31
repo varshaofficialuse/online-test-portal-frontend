@@ -102,3 +102,10 @@
   background-color: #ec9214; /* dark red */
   color: #fff;
 }
+
+.input-box{
+  width: 92%;
+}
+.gap-space{
+gap: 12px !important;
+}

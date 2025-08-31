@@ -270,7 +270,8 @@ const UpdateTestForm = ({ testID, closeForm }) => {
                     <div>
                       <label className="form-label">Options</label>
                       {q.options.map((opt, oIndex) => (
-                        <div key={oIndex} className="input-group mb-2">
+                        <div key={oIndex} className="input-group mb-2 gap-space">
+                         <div className="input-box"> 
                           <input
                             type="text"
                             value={opt}
@@ -279,6 +280,8 @@ const UpdateTestForm = ({ testID, closeForm }) => {
                             }
                             className="form-control"
                           />
+                          </div>
+                          <div> 
                           <button
                             type="button"
                             className={`option-btn ${
@@ -288,6 +291,7 @@ const UpdateTestForm = ({ testID, closeForm }) => {
                           >
                             <i className="bi bi-check-circle"></i>
                           </button>
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -317,7 +321,7 @@ const UpdateTestForm = ({ testID, closeForm }) => {
           <div className="d-flex justify-content-start gap-3 mt-3">
             <button
               type="button"
-              className="btn-success border-0 rounded-pill transition ease-in-out duration-200 "
+              className="btn-success !important border-0 rounded-pill transition ease-in-out duration-200 "
               onClick={addQuestion}
             >
               <i className="bi bi-plus-circle me-2"></i>Add Questions

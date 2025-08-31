@@ -5,7 +5,6 @@ import { Toaster } from 'react-hot-toast';
 import Layout from './components/Layout';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Dashboard from './components/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import Notes from './components/Notes';
 import Quizzes from './components/Quizzes';
@@ -22,8 +21,7 @@ function App(){
       <Route path="/login" element={<Login/>} />
       <Route path="/signup" element={<Signup/>} />
       <Route path="/" element={<ProtectedRoute><Layout/></ProtectedRoute>}>
-        <Route index element={<Dashboard/>} />
-        <Route path="dashboard" element={<Dashboard/>} />
+        <Route index element={<sessions/>} />
         <Route path="admin" element={<Admin/>} />
         <Route path="notes" element={<Notes/>} />/
         <Route path="quizzes" element={<Quizzes/>} />

@@ -8,6 +8,7 @@ import "../styles/quizzes.css";
 
 export default function Quizzes({ testId }) {
   const token = useSelector((s) => s.auth.accessToken);
+  const role=useSelector((s)=>s.auth.user.role);
   const [quizzes, setQuizzes] = useState([]);
   const [notes, setNotes] = useState([]);
   const [selectedNote, setSelectedNote] = useState("");
@@ -46,8 +47,9 @@ export default function Quizzes({ testId }) {
       setNotes(res.data);
     } catch (err) {
       console.error(err);
+      if (role.toLowerCase() === "superadmin" || role.toLowerCase() === "admin"){
       toast.error("Failed to fetch notes");
-    }
+    }}
   };
 
   const createQuiz = async () => {
@@ -81,7 +83,8 @@ export default function Quizzes({ testId }) {
       <Toaster position="top-right" />
       <h2 className="quiz-title">Quiz Management</h2>
 
-      {/* Create Quiz */}
+{(role.toLowerCase() === "superadmin" || role.toLowerCase() === "admin") && (
+    
       <div className="create-quiz-section">
         <select
           className="form-select note-dropdown"
@@ -111,7 +114,7 @@ export default function Quizzes({ testId }) {
           )}
         </button>
       </div>
-
+)}
       {/* Quiz Cards */}
       <div className="quiz-cards-container">
         {quizzes.map((q) => (
@@ -130,11 +133,11 @@ export default function Quizzes({ testId }) {
                  onClick={() => handleStartQuiz(q.note_id, q.id)}>
                 Start Quiz
               </button>
-
+{(role.toLowerCase() === "superadmin" || role.toLowerCase() === "admin") && (
               <button className=" delete-btn"  onClick={() => deleteQuiz(q.id)}>
                 {/* <i className="bi bi-trash"></i> */}
                  Delete
-              </button>
+              </button>)}
             </div>
            
           </div>

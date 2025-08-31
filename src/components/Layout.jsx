@@ -16,19 +16,17 @@ export default function Layout() {
       <aside className="sidebar">
         <div className="brand">Test Portal</div>
         <nav>
-          <NavLink to="/dashboard" className="nav-link">
-            <i className="bi bi-speedometer2 nav-icon"></i> Dashboard
+          
+          <NavLink to="/sessions" className="nav-link">
+            <i className="bi bi-clipboard-check nav-icon"></i> Sessions
           </NavLink>
 
-          <NavLink to="/sessions" className="nav-link">
-            <i className="bi bi-camera-video nav-icon"></i> Sessions
+           <NavLink to="/quizzes" className="nav-link">
+            <i className="bi bi-question-circle nav-icon"></i> Quizzes
           </NavLink>
 
            {role.toLowerCase() !== "student" && (
-            <> 
-          <NavLink to="/quizzes" className="nav-link">
-            <i className="bi bi-question-circle nav-icon"></i> Quizzes
-          </NavLink>
+            <>          
 
           <NavLink to="/tests" className="nav-link">
             <i className="bi bi-ui-checks-grid nav-icon"></i> Tests
@@ -63,8 +61,8 @@ export default function Layout() {
 
       <main className="main-content flex-grow-1">
         <header className="topbar d-flex justify-content-between align-items-center bg-light">
-          <h4 className="mb-0">Welcome {role}</h4>
-          <div className="user-info">{user?.name || user?.email}</div>
+          <h4 className="mb-0">Welcome {user?.name}</h4>
+          <div className="user-info">{user?.email||""}</div>
         </header>
         <div className="content p-4">
           <Outlet />

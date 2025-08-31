@@ -153,6 +153,12 @@
   display: flex;
   gap: 5px;
 }
+.input-box{
+  width: 92%;
+}
+.gap-space{
+gap: 12px !important;
+}
 
 /* Responsive */
 @media (max-width: 768px) {
