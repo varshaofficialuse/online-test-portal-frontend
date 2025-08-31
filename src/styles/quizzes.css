@@ -63,15 +63,17 @@
 
 /* Individual quiz card */
 .quiz-card {
-  padding: 15px;
+  padding: 20px;
   border-radius: 8px;
-  background-color: #fff;
+  background-color: #fbf6f6;
   box-shadow: 0 4px 8px rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
+  gap:40px;
+  color: #213e69;
 }
 
 .quiz-card:hover {
@@ -80,7 +82,7 @@
 }
 
 .quiz-info p {
-  margin: 6px 0;
+  margin: 10px 0;
   font-size: 16px;
   color: #444;
   text-align: center;
@@ -90,38 +92,43 @@
 .quiz-actions {
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 38px;
   margin-top: 12px;
 }
 
-.start-quiz-btn {
-  background-color: #2563eb;
-  color: white;
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 500;
+
+/* Base pill button */
+.btn-pill {
   border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  border-radius: 50px; /* pill shape */
+  transition: all 0.2s ease-in-out;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  text-align: center;
 }
 
-.start-quiz-btn:hover {
-  background-color: #1d4ed8;
-  transform: scale(1.03);
+/* Variants */
+.btn-success-custom {
+  background-color: #198754;
 }
 
-.delete-btn {
-  background-color: #f44336;
-  color: white;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
+.btn-success-custom:hover {
+  background-color: #157347;
 }
 
-.delete-btn:hover {
-  background-color: #d32f2f;
-  transform: scale(1.03);
+.btn-primary-custom {
+  background-color: #0d6efd;
+}
+
+.btn-primary-custom:hover {
+  background-color: #0b5ed7;
+}
+
+.btn-danger-custom {
+  background-color: #dc3545;
+}
+
+.btn-danger-custom:hover {
+  background-color: #bb2d3b;
 }

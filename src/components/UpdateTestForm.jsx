@@ -321,7 +321,7 @@ const UpdateTestForm = ({ testID, closeForm }) => {
           <div className="d-flex justify-content-start gap-3 mt-3">
             <button
               type="button"
-              className="btn-success !important border-0 rounded-pill transition ease-in-out duration-200 "
+              className=" btn-pill btn-success-custom  "
               onClick={addQuestion}
             >
               <i className="bi bi-plus-circle me-2"></i>Add Questions
@@ -329,7 +329,7 @@ const UpdateTestForm = ({ testID, closeForm }) => {
 
             <button
               type="submit"
-              className="btn-primary border-0  rounded-pill transition ease-in-out duration-200 "
+              className=" btn-pill btn-primary-custom"
               disabled={loading}
             >
               {loading ? (
@@ -341,7 +341,7 @@ const UpdateTestForm = ({ testID, closeForm }) => {
 
             <button
               type="button"
-              className="btn-danger rounded-pill border-0 transition ease-in-out duration-200"
+              className="btn-pill btn-danger-custom"
               onClick={closeForm}
             >
               Cancel

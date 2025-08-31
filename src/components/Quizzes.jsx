@@ -129,12 +129,12 @@ export default function Quizzes({ testId }) {
 
             <div className="quiz-actions">
 
-               <button className="start-quiz-btn"   
+               <button className=" btn-pill btn-success-custom "   
                  onClick={() => handleStartQuiz(q.note_id, q.id)}>
                 Start Quiz
               </button>
 {(role.toLowerCase() === "superadmin" || role.toLowerCase() === "admin") && (
-              <button className=" delete-btn"  onClick={() => deleteQuiz(q.id)}>
+              <button className=" btn-pill btn-danger-custom"  onClick={() => deleteQuiz(q.id)}>
                 {/* <i className="bi bi-trash"></i> */}
                  Delete
               </button>)}

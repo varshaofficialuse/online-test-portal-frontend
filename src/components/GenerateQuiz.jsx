@@ -36,7 +36,7 @@ export default function GenerateQuiz({ testId, quizID, onGenerated }) {
   return (
     <div>
       <button 
-        className=" auto-generate-btn"
+        className="btn-pill btn-success-custom"
         onClick={generateQuestions}
         disabled={loading}
         title="Auto Generate Quiz"

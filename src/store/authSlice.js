@@ -50,9 +50,6 @@ const authSlice = createSlice({
       state.user = null;
       state.loading = false;
       localStorage.clear();
-      // localStorage.removeItem('access_token');
-      // localStorage.removeItem('refresh_token');
-      // localStorage.removeItem('user');
     },
     failure(state, action) {
       state.loading = false;
@@ -63,13 +60,11 @@ const authSlice = createSlice({
 
 export const { start, loginSuccess, logout, failure } = authSlice.actions;
 
-// --- Thunks ---
 
 // Fetch user info
 export const fetchUser = (navigate) => async (dispatch, getState) => {
   try {
     console.log("inside fetch user")
-    // const { accessToken } = getState().auth;
     const accessToken = localStorage.getItem('access_token')
     console.log("Access token",accessToken)
     if (!accessToken) return;
@@ -99,7 +94,6 @@ export const login = (formData, navigate) => async (dispatch) => {
 
     // Fetch user info and navigate
     await dispatch(fetchUser(navigate));
-    // if (navigate) navigate("/sessions");
 
     console.log("96 dispatch done")
     return { meta: { requestStatus: 'fulfilled' } };
@@ -115,8 +109,6 @@ export const signup = (formData, navigate) => async (dispatch) => {
   try {
     const res = await axios.post('http://127.0.0.1:8000/auth/signup', formData);
 
-    // localStorage.setItem('access_token', res.data.access_token);
-    // localStorage.setItem('refresh_token', res.data.refresh_token);
 
     await dispatch(fetchUser(navigate));
     return { ok: true };

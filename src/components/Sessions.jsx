@@ -3,6 +3,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import "../styles/sessions.css";
+
 import Analytics from "./Analytics";
 
 const API_URL = "http://127.0.0.1:8000/";
@@ -15,7 +16,6 @@ export default function Sessions() {
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState({});
   const [submittedTestId, setSubmittedTestId] = useState(null);
-
 
   // Fetch all tests
   const fetchTests = async () => {
@@ -43,12 +43,9 @@ export default function Sessions() {
       const res = await axios.post(
         `${API_URL}sessions/${test.id}/start`,
         {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      // Fetch questions separately if needed
       const qRes = await axios.get(`${API_URL}tests/${test.id}/questions`, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -75,19 +72,14 @@ export default function Sessions() {
     if (!currentTest) return;
 
     try {
-      const res = await axios.post(
+      await axios.post(
         `${API_URL}sessions/${currentTest.id}/submit`,
         { answers },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      toast.success(
-        'Test submitted! Score'
-      );
-
-      setSubmittedTestId(currentTest.id); // 👈 store submitted test ID
+      toast.success("Test submitted!");
+      setSubmittedTestId(currentTest.id);
 
       setCurrentTest(null);
       setQuestions([]);
@@ -103,45 +95,49 @@ export default function Sessions() {
   if (loading) return <p>Loading tests...</p>;
 
   return (
-    <div>
-      <h4 className="mb-3">Available Tests</h4>
-
+    <div className="sessions-container">
+      <br />
+      <h4 className="mb-3 see-test">Available Tests</h4>
+      <br />
       {!currentTest && (
-        <div className="d-flex flex-wrap gap-3">
+        <div className="tests-list">
           {tests.map((t) => {
             const startTime = new Date(t.start_at);
             const endTime = new Date(t.end_at);
             const isExpired = now > endTime;
             const isNotStarted = now < startTime;
-            const isSubmitted = t.id === submittedTestId; // 👈 check if already submitted
-
+            const isSubmitted = t.id === submittedTestId;
 
             return (
-              <div
-                key={t.id}
-                className="card p-3 shadow-sm"
-                style={{ width: "250px" }}
-              >
-                <h5 className="mb-2">{t.title}</h5>
-                <p className="mb-1">
-                  <strong>Start:</strong> {startTime.toLocaleString()}
-                </p>
-                <p className="mb-3">
-                  <strong>End:</strong> {endTime.toLocaleString()}
-                </p>
-                <button
-                  className="btn btn-primary w-100"
-                  disabled={isExpired || isNotStarted || isSubmitted} // 👈 disable after submission
-
-                  onClick={() => startTest(t)}
-                  style={{
-                    cursor: isExpired || isNotStarted ? "not-allowed" : "pointer",
-                    backgroundColor: isExpired ? "#6c757d" : undefined,
-                  }}
-                >
-                {isSubmitted ? "Submitted" : isExpired ? "Expired" : isNotStarted ? "Not Started" : "Start Test"}
-
-                </button>
+              <div key={t.id} className="test-card">
+                <div style={{ width: "100%" }}>
+                  <div><h5 className="see-test">{t.title}</h5></div>
+                  
+                  <p>
+                    <strong>Start:</strong> {startTime.toLocaleString()}
+                  </p>
+                  <p>
+                    <strong>End:</strong> {endTime.toLocaleString()}
+                  </p>
+                  <button
+                    className={`start-btn btn-pill 
+    ${isSubmitted ? "btn-submitted" : ""} 
+    ${isExpired ? "btn-expired" : ""} 
+    ${isNotStarted ? "btn-notstarted" : ""} 
+    ${!isExpired && !isNotStarted && !isSubmitted ? "btn-start" : ""}
+  `}
+                    disabled={isExpired || isNotStarted || isSubmitted}
+                    onClick={() => startTest(t)}
+                  >
+                    {isSubmitted
+                      ? "Submitted"
+                      : isExpired
+                      ? "Expired"
+                      : isNotStarted
+                      ? "Not Started"
+                      : "Start Test"}
+                  </button>
+                </div>
               </div>
             );
           })}
@@ -150,58 +146,53 @@ export default function Sessions() {
 
       {/* Current Test Questions */}
       {currentTest && (
-        <div className="card p-3 mt-3 ">
-          <h5 style={{"text-align": "center"}}>{currentTest.title}</h5>
+        <div className="current-test">
+          <h5 style={{ textAlign: "center" }}>{currentTest.title}</h5>
           <ol>
             {questions.map((q, idx) => (
-              <li key={q.id} className="mb-3">
-                <p>
-                  <strong>{q.ques}</strong>
-                </p>
-                <ul style={{ listStyle: "none", padding: 0 }}>
+              <li key={q.id} className="question-item">
+                <p className="question-text">{q.ques}</p>
+                <div className="options-list">
                   {q.options.map((opt, i) => (
-                    <li key={i}>
-                      <label>
-                        <input
-                          type="radio"
-                          name={`q-${idx}`}
-                          value={i}
-                          checked={answers[q.id]?.selected === opt}
-                          onChange={() => handleAnswer(q.id, opt)}
-                        />{" "}
-                        {opt}
-                      </label>
-                    </li>
+                    <button
+                      key={i}
+                      className={`option-btn ${
+                        answers[q.id]?.selected === opt ? "selected" : ""
+                      }`}
+                      onClick={() => handleAnswer(q.id, opt)}
+                    >
+                      {opt}
+                    </button>
                   ))}
-                </ul>
+                </div>
               </li>
             ))}
           </ol>
-          <div>  
-          <button className="btn btn-success me-2" onClick={submitTest}>
-            Submit Test
-          </button>
-          <button
-            className="btn btn-secondary "
-            onClick={() => {
-              setCurrentTest(null);
-              setQuestions([]);
-              setAnswers({});
-            }}
-          >
-            Back
-          </button>
+
+          <div className="test-actions">
+            <button className="submit-btn" onClick={submitTest}>
+              Submit Test
+            </button>
+            <button
+              className="cancel-btn"
+              onClick={() => {
+                setCurrentTest(null);
+                setQuestions([]);
+                setAnswers({});
+              }}
+            >
+              Back
+            </button>
           </div>
         </div>
       )}
-      <br/><br/>
+      <br /><br />
       {submittedTestId && (
-  <div className="mt-4">
-    <h4>Analytics</h4>
-    <Analytics testId={submittedTestId} />
-  </div>
-)}
-
+        <div className="analytics-section">
+          <h4>Analytics</h4>
+          <Analytics testId={submittedTestId} />
+        </div>
+      )}
     </div>
   );
 }

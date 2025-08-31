@@ -20,7 +20,24 @@
   transform: scale(1.05);
 
 }
+.btn-pill {
+  border: none;
+  border-radius: 50px; /* pill shape */
+  transition: all 0.2s ease-in-out;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  text-align: center;
+}
 
+/* Variants */
+.btn-success-custom {
+  background-color: #198754;
+}
+
+.btn-success-custom:hover {
+  background-color: #157347;
+}
 
 
 .auto-generate-btn .spinner-border {

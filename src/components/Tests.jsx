@@ -246,7 +246,7 @@ const [quizGenerated, setQuizGenerated] = useState(false);
           </label>
         </div>
         <div className="create-btn">
-          <button className=" btn-primary " onClick={createTest}>
+          <button className="btn-pill btn-success-custom" onClick={createTest}>
             Create Test
           </button>
         </div>

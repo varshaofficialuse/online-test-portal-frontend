@@ -85,7 +85,9 @@ export default function Notes() {
           value={content}
           onChange={e => setContent(e.target.value)}
         />
-        <button className="btn btn-primary note-btn" onClick={addNote}>Add Note</button>
+        <div> 
+        <button className="btn-pill btn-primary-custom" onClick={addNote}>Add Note</button>
+        </div>
       </div>
 
       <div className="notes-table-container">

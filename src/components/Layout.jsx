@@ -15,6 +15,7 @@ export default function Layout() {
     <div className="app d-flex">
       <aside className="sidebar">
         <div className="brand">Test Portal</div>
+        <br />
         <nav>
           
           <NavLink to="/sessions" className="nav-link">
@@ -61,7 +62,7 @@ export default function Layout() {
 
       <main className="main-content flex-grow-1">
         <header className="topbar d-flex justify-content-between align-items-center bg-light">
-          <h4 className="mb-0">Welcome {user?.name}</h4>
+          <h4 className="mb-0 user-name">Welcome !! 🥳 {user?.name}</h4>
           <div className="user-info">{user?.email||""}</div>
         </header>
         <div className="content p-4">
