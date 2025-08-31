@@ -15,6 +15,7 @@ export default function Layout() {
     <div className="app d-flex">
       <aside className="sidebar">
         <div className="brand">Test Portal</div>
+        
         <br />
         <nav>
           
@@ -26,7 +27,7 @@ export default function Layout() {
             <i className="bi bi-question-circle nav-icon"></i> Quizzes
           </NavLink>
 
-           {role.toLowerCase() !== "student" && (
+           {role && role.toLowerCase() !== "student" && (
             <>          
 
           <NavLink to="/tests" className="nav-link">
@@ -41,7 +42,7 @@ export default function Layout() {
           </>
             )}
           
-          {role.toLowerCase() === "superadmin" && (
+          { role && role.toLowerCase() === "superadmin" && (
 
           <NavLink to="/admin" className="nav-link">
             <i className="bi bi-person-gear nav-icon"></i> Admin
