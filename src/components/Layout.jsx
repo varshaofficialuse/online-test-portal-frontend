@@ -50,20 +50,20 @@ export default function Layout() {
 
         </nav>
 
-        <div className="signout">
-          <button
-            className="btn btn-light w-100"
-            onClick={() => { dispatch(logout()); navigate('/login'); }}
-          >
-            <i className="bi bi-box-arrow-right"></i> Sign Out
-          </button>
-        </div>
+        
       </aside>
 
       <main className="main-content flex-grow-1">
         <header className="topbar d-flex justify-content-between align-items-center bg-light">
           <h4 className="mb-0 user-name">Welcome !! 🥳 {user?.name}</h4>
-          <div className="user-info">{user?.email||""}</div>
+          <div className="user-info">{user?.email||""} 
+          <button
+            className="btn-pill btn-signout"
+            onClick={() => { dispatch(logout()); navigate('/login'); }}
+          >
+             Sign Out
+          </button>
+        </div>
         </header>
         <div className="content p-4">
           <Outlet />

@@ -81,11 +81,28 @@
   color: #07134d;
 }
 .user-info { 
-  font-size:0.95rem; 
+  font-size:15px; 
   color:#fbf7f7;
-  font-weight:900; 
+  font-weight:700; 
+  display: flex;
+  flex-direction: column !important;
+  gap: 10px;
 }
 
 .content { 
   padding:20px; 
+}
+.btn-pill {
+  border: none;
+  border-radius: 50px; /* pill shape */
+  transition: all 0.2s ease-in-out;
+  color: #fff;
+  /* padding: 0.5rem 1rem; */
+  display: inline-block;
+  text-align: center;
+}
+.btn-signout{
+  background-color: #179fbd;
+  color: black !important ;
+  font-weight: 700;
 }
