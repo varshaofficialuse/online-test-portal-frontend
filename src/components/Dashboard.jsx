@@ -7,7 +7,7 @@ import "../styles/dashboard.css";
 const API_URL = "http://127.0.0.1:8000/";
 
 export default function Dashboard() {
-  const token = useSelector((s) => s.auth.token);
+  const token = useSelector((s) => s.auth.accessToken);
   const [tests, setTests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedTest, setSelectedTest] = useState(null);

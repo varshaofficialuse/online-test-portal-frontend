@@ -9,7 +9,7 @@ import '../styles/admin.css';
 const API_URL = "http://127.0.0.1:8000/";
 
 export default function Admin() {
-  const token = useSelector(s => s.auth.token);
+  const token =useSelector((s) => s.auth.accessToken);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

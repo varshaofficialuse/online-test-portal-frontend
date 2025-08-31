@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import axiosInstance from '../utils/axiosInstance'; // Axios with interceptors
 
-// ---- SAFE localStorage GETTERS ----
-const token = localStorage.getItem('token');
-
+// --- Safe localStorage getters ---
+let accessToken = localStorage.getItem('access_token');
+let refreshToken = localStorage.getItem('refresh_token');
 let user = null;
+
 try {
   const storedUser = localStorage.getItem('user');
   if (storedUser && storedUser !== "undefined" && storedUser !== "null") {
@@ -15,7 +17,8 @@ try {
 }
 
 const initialState = {
-  token: token || null,
+  accessToken: accessToken || null,
+  refreshToken: refreshToken || null,
   user: user || null,
   loading: false,
   error: null,
@@ -30,18 +33,26 @@ const authSlice = createSlice({
       state.error = null;
     },
     loginSuccess(state, action) {
+      console.log('inside login success reducer state and action',state,action)
       state.loading = false;
-      state.token = action.payload.token;
+      state.accessToken = action.payload.accessToken;
+      state.refreshToken = action.payload.refreshToken || state.refreshToken;
       state.user = action.payload.user;
-      localStorage.setItem('token', action.payload.token);
-      localStorage.setItem('user', JSON.stringify(action.payload.user));
+
+      localStorage.setItem('access_token', state.accessToken);
+      localStorage.setItem('refresh_token', state.refreshToken);
+      localStorage.setItem('user', JSON.stringify(state.user));
+      console.log("DONE FLOW");
     },
     logout(state) {
-      state.token = null;
+      state.accessToken = null;
+      state.refreshToken = null;
       state.user = null;
       state.loading = false;
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
+      localStorage.clear();
+      // localStorage.removeItem('access_token');
+      // localStorage.removeItem('refresh_token');
+      // localStorage.removeItem('user');
     },
     failure(state, action) {
       state.loading = false;
@@ -52,83 +63,97 @@ const authSlice = createSlice({
 
 export const { start, loginSuccess, logout, failure } = authSlice.actions;
 
-// ---------- AUTH ACTIONS ----------
+// --- Thunks ---
 
-// SIGNUP
-export const signup = (data) => async (dispatch) => {
-  dispatch(start());
+// Fetch user info
+export const fetchUser = (navigate) => async (dispatch, getState) => {
   try {
-    const res = await axios.post("http://127.0.0.1:8000/auth/signup", data, {
-      headers: { "Content-Type": "application/json" },
+    console.log("inside fetch user")
+    // const { accessToken } = getState().auth;
+    const accessToken = localStorage.getItem('access_token')
+    console.log("Access token",accessToken)
+    if (!accessToken) return;
+
+    const res = await axios.get('http://127.0.0.1:8000/auth/me', {
+      headers: { Authorization: `Bearer ${accessToken}` },
     });
-
-    // Backend does not return user, so store minimal user info
-    const minimalUser = {
-      name: data.name,
-      email: data.email,
-      role: "student",
-    };
-
-    dispatch(
-      loginSuccess({
-        token: res.data.access_token || "", // if backend returns token
-        user: minimalUser,
-      })
-    );
-    return { ok: true };
-  } catch (e) {
-    dispatch(failure(e.response?.data?.detail || "Signup failed"));
-    return { ok: false };
+    console.log("RESULT in fetchuser",res)
+    dispatch(loginSuccess({ accessToken, user: res.data }));
+    console.log("Dispath login success done")
+    
+  } catch (err) {
+    console.error('Fetch user error:', err);
+    dispatch(logout());
   }
 };
 
 // LOGIN
-export const login = ({ email, password }) => async (dispatch) => {
+export const login = (formData, navigate) => async (dispatch) => {
   dispatch(start());
   try {
-    const res = await axios.post("http://127.0.0.1:8000/auth/login", { email, password }, {
-      headers: { "Content-Type": "application/json" },
-    });
+    const res = await axios.post('http://127.0.0.1:8000/auth/login', formData);
+    console.log("RES in login",res);
+    // Save tokens
+    localStorage.setItem('access_token', res.data.access_token);
+    localStorage.setItem('refresh_token', res.data.refresh_token);
 
-    // Backend does not return user, so store minimal user info
-    const minimalUser = {
-      name: email.split('@')[0],
-      email: email,
-      role: "student",
-    };
+    // Fetch user info and navigate
+    await dispatch(fetchUser(navigate));
+    // if (navigate) navigate("/sessions");
 
-    dispatch(
-      loginSuccess({
-        token: res.data.access_token,
-        user: minimalUser,
-      })
-    );
-    return { meta: { requestStatus: "fulfilled" } };
-  } catch (e) {
-    dispatch(failure(e.response?.data?.detail || "Login failed"));
-    return { meta: { requestStatus: "rejected" } };
+    console.log("96 dispatch done")
+    return { meta: { requestStatus: 'fulfilled' } };
+  } catch (err) {
+    dispatch(failure(err.response?.data?.detail || 'Login failed'));
+    return { meta: { requestStatus: 'rejected' } };
   }
 };
 
-// REFRESH TOKEN
-export const refreshToken = () => async (dispatch, getState) => {
-  const { token, user } = getState().auth;
+// SIGNUP
+export const signup = (formData, navigate) => async (dispatch) => {
+  dispatch(start());
+  try {
+    const res = await axios.post('http://127.0.0.1:8000/auth/signup', formData);
+
+    // localStorage.setItem('access_token', res.data.access_token);
+    // localStorage.setItem('refresh_token', res.data.refresh_token);
+
+    await dispatch(fetchUser(navigate));
+    return { ok: true };
+  } catch (err) {
+    dispatch(failure(err.response?.data?.detail || 'Signup failed'));
+    return { ok: false };
+  }
+};
+
+// Refresh token
+export const refreshTokenThunk = () => async (dispatch, getState) => {
+  const { refreshToken, user } = getState().auth;
+  if (!refreshToken) {
+    dispatch(logout());
+    return;
+  }
+
   try {
     const res = await axios.post(
-      "http://127.0.0.1:8000/auth/refresh",
+      'http://127.0.0.1:8000/auth/refresh',
       {},
-      { headers: { Authorization: `Bearer ${token}` } }
+      { headers: { Authorization: `Bearer ${refreshToken}` } }
     );
 
     dispatch(
       loginSuccess({
-        token: res.data.access_token,
-        user: user, // reuse the same minimal user info
+        accessToken: res.data.access_token,
+        refreshToken,
+        user,
       })
     );
-  } catch (e) {
-    dispatch(failure("Token refresh failed"));
+
+    return { type: 'auth/loginSuccess' };
+  } catch (err) {
+    console.error('Token refresh failed:', err);
     dispatch(logout());
+    return { type: 'auth/logout' };
   }
 };
 

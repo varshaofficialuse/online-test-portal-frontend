@@ -10,12 +10,13 @@ export default function Login() {
   const dispatch = useDispatch();
   const loading = useSelector((s) => s.auth.loading);
   const navigate = useNavigate();
-
+  // console.log('navigate----', navigate)
   const submit = async (e) => {
     e.preventDefault();
-    const res = await dispatch(login(form));
+     let res=await dispatch(login(form));
     if (res.meta && res.meta.requestStatus === 'fulfilled') {
-      navigate('/dashboard');
+      // navigate('/dashboard');
+        window.location.href = "/dashboard"; 
     }
   };
 
@@ -62,7 +63,7 @@ export default function Login() {
             {loading ? 'Signing In...' : 'Sign In'}
           </button>
         </form>
-
+        {/* <button onClick={()=>navigate('dashboard')}>Go to dashboard</button> */}
         {/* Signup Link */}
         <div className="mt-3 text-center">
           <Link to="/signup">Create account</Link>

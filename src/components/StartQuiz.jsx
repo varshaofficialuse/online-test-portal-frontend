@@ -8,7 +8,7 @@ import "../styles/start_quiz.css";
 const API_URL = "http://127.0.0.1:8000/";
 
 export default function StartQuiz() {
-  const token = useSelector((s) => s.auth.token);
+  const token =useSelector((s) => s.auth.accessToken);
   const { noteId, quizId } = useParams();
 
   const [questions, setQuestions] = useState([]);

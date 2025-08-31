@@ -8,16 +8,15 @@ import '../styles/layout.css';
 export default function Layout() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector(s => s.auth.user);
+  const user = useSelector((s) => s.auth.user);
   const role = user?.role;
-  // let role='admin';
 
   return (
     <div className="app d-flex">
       <aside className="sidebar">
         <div className="brand">Test Portal</div>
         <nav>
-          <NavLink to="/" className="nav-link">
+          <NavLink to="/dashboard" className="nav-link">
             <i className="bi bi-speedometer2 nav-icon"></i> Dashboard
           </NavLink>
 
@@ -25,11 +24,6 @@ export default function Layout() {
             <i className="bi bi-camera-video nav-icon"></i> Sessions
           </NavLink>
 
-          
-{/* 
-          <NavLink to="/practice/:noteId/:quizId" className="nav-link">
-            <i className="bi  bi-mortarboard nav-icon"></i> Practice
-          </NavLink> */}
            {role.toLowerCase() !== "student" && (
             <> 
           <NavLink to="/quizzes" className="nav-link">

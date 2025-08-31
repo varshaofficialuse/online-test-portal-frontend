@@ -8,7 +8,7 @@ import '../styles/notes.css';
 const API_URL = "http://127.0.0.1:8000/";
 
 export default function Notes() {
-  const token = useSelector(s => s.auth.token);
+  const token =useSelector((s) => s.auth.accessToken);
   const [notes, setNotes] = useState([]);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');

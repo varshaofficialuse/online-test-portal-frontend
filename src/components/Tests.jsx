@@ -11,7 +11,7 @@ import GenerateQuiz from "./GenerateQuiz";
 const API_URL = "http://127.0.0.1:8000/";
 
 export default function Tests() {
-  const token = useSelector((s) => s.auth.token);
+  const token = useSelector((s) => s.auth.accessToken);
   const [tests, setTests] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");

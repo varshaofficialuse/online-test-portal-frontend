@@ -7,7 +7,7 @@ import toast, { Toaster } from "react-hot-toast";
 import "../styles/quizzes.css";
 
 export default function Quizzes({ testId }) {
-  const token = useSelector((s) => s.auth.token);
+  const token = useSelector((s) => s.auth.accessToken);
   const [quizzes, setQuizzes] = useState([]);
   const [notes, setNotes] = useState([]);
   const [selectedNote, setSelectedNote] = useState("");

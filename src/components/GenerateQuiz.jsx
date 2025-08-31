@@ -6,7 +6,7 @@ import '../styles/generate_quiz.css';
 
 const API_URL = "http://127.0.0.1:8000/";
 export default function GenerateQuiz({ testId, quizID, onGenerated }) {
-  const token = useSelector(s => s.auth.token);
+  const token = useSelector((s) => s.auth.accessToken);;
   const [loading, setLoading] = useState(false);
 
   const generateQuestions = async () => {

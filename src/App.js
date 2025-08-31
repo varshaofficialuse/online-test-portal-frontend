@@ -22,10 +22,10 @@ function App(){
       <Route path="/login" element={<Login/>} />
       <Route path="/signup" element={<Signup/>} />
       <Route path="/" element={<ProtectedRoute><Layout/></ProtectedRoute>}>
-        {/* <Route index element={<Dashboard/>} /> */}
+        <Route index element={<Dashboard/>} />
         <Route path="dashboard" element={<Dashboard/>} />
         <Route path="admin" element={<Admin/>} />
-        <Route path="notes" element={<Notes/>} />
+        <Route path="notes" element={<Notes/>} />/
         <Route path="quizzes" element={<Quizzes/>} />
         <Route path="tests" element={<Tests/>} />
         <Route path="sessions" element={<Sessions/>} />

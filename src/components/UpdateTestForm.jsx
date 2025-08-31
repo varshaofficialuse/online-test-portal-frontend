@@ -6,7 +6,7 @@ import { Spinner } from "react-bootstrap";
 import "../styles/update_test_form.css";
 
 const UpdateTestForm = ({ testID, closeForm }) => {
-  const token = useSelector((s) => s.auth.token);
+  const token =useSelector((s) => s.auth.accessToken);
   const [formData, setFormData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [expandedIndex, setExpandedIndex] = useState(null);
