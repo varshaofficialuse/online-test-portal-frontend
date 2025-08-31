@@ -9,7 +9,8 @@ export default function Layout() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector(s => s.auth.user);
-  // console.log('-----------------user',user)
+  const role = user?.role;
+  // let role='admin';
 
   return (
     <div className="app d-flex">
@@ -20,14 +21,17 @@ export default function Layout() {
             <i className="bi bi-speedometer2 nav-icon"></i> Dashboard
           </NavLink>
 
-          <NavLink to="/notes" className="nav-link">
-            <i className="bi bi-journal-text nav-icon"></i> Notes
+          <NavLink to="/sessions" className="nav-link">
+            <i className="bi bi-camera-video nav-icon"></i> Sessions
           </NavLink>
+
+          
 {/* 
           <NavLink to="/practice/:noteId/:quizId" className="nav-link">
             <i className="bi  bi-mortarboard nav-icon"></i> Practice
           </NavLink> */}
-
+           {role.toLowerCase() !== "student" && (
+            <> 
           <NavLink to="/quizzes" className="nav-link">
             <i className="bi bi-question-circle nav-icon"></i> Quizzes
           </NavLink>
@@ -36,15 +40,21 @@ export default function Layout() {
             <i className="bi bi-ui-checks-grid nav-icon"></i> Tests
           </NavLink>
 
-          <NavLink to="/sessions" className="nav-link">
-            <i className="bi bi-camera-video nav-icon"></i> Sessions
+          <NavLink to="/notes" className="nav-link">
+            <i className="bi bi-journal-text nav-icon"></i> Notes
           </NavLink>
-
           
+
+          </>
+            )}
+          
+          {role.toLowerCase() === "superadmin" && (
 
           <NavLink to="/admin" className="nav-link">
             <i className="bi bi-person-gear nav-icon"></i> Admin
           </NavLink>
+                    )}
+
         </nav>
 
         <div className="signout">
@@ -59,7 +69,7 @@ export default function Layout() {
 
       <main className="main-content flex-grow-1">
         <header className="topbar d-flex justify-content-between align-items-center bg-light">
-          <h4 className="mb-0">Dashboard</h4>
+          <h4 className="mb-0">Welcome {role}</h4>
           <div className="user-info">{user?.name || user?.email}</div>
         </header>
         <div className="content p-4">
