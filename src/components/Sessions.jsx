@@ -169,12 +169,12 @@ export default function Sessions() {
             ))}
           </ol>
 
-          <div className="test-actions">
-            <button className="submit-btn" onClick={submitTest}>
+          <div className="test-actions ">
+            <button className="btn-primary-custom btn-pill" onClick={submitTest}>
               Submit Test
             </button>
             <button
-              className="cancel-btn"
+              className=" btn-pill btn-back-custom"
               onClick={() => {
                 setCurrentTest(null);
                 setQuestions([]);

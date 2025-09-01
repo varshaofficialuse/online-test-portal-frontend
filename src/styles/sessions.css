@@ -89,3 +89,27 @@
   cursor: not-allowed;
   box-shadow: none;
 }
+.test-actions{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btn-primary-custom {
+  background-color: #0d6efd;
+}
+
+.btn-primary-custom:hover {
+  background-color: #0b5ed7;
+}
+
+.btn-back-custom {
+  background-color: #413e3e;
+  color: white;
+}
+
+.btn-back-custom:hover {
+  background-color: #504d4e;
+  
+}

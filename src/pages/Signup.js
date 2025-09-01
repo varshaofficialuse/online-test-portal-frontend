@@ -15,7 +15,7 @@ export default function Signup(){
   const submit = async (e)=>{
     e.preventDefault();
     const res = await dispatch(signup(form));
-    navigate('/dashboard');
+    navigate('/login');
   };
 
   
