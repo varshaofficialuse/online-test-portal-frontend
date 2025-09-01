@@ -113,3 +113,68 @@
   background-color: #504d4e;
   
 }
+
+/* Container for the questions */
+.question-item {
+  margin-bottom: 24px;
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fafafa;
+  transition: box-shadow 0.2s;
+}
+
+.question-item:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+/* Question text */
+.question-text {
+  font-weight: 600;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Options container */
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Option buttons */
+.option-btn {
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.option-btn:hover {
+  background-color: #f0f0f0;
+  border-color: #999;
+}
+
+/* Selected option */
+.option-btn.selected {
+  background-color: #4caf50;
+  color: #fff;
+  border-color: #4caf50;
+}
+
+/* Optional: make buttons look better on small screens */
+@media (max-width: 600px) {
+  .question-item {
+    padding: 12px;
+  }
+
+  .option-btn {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+}
