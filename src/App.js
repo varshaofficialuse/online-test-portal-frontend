@@ -18,9 +18,11 @@ function App(){
     return (
       <>
     <Routes>
+        <Route path="/" element={<Navigate to="/login" replace />} />
+
       <Route path="/login" element={<Login/>} />
       <Route path="/signup" element={<Signup/>} />
-      <Route path="/" element={<ProtectedRoute><Layout/></ProtectedRoute>}>
+      <Route element={<ProtectedRoute><Layout/></ProtectedRoute>}>
         <Route index element={<sessions/>} />
         <Route path="admin" element={<Admin/>} />
         <Route path="notes" element={<Notes/>} />/
@@ -32,7 +34,7 @@ function App(){
 
 
       </Route>
-      <Route path="*" element={<Navigate to='/' />} />
+      <Route path="*" element={<Navigate to='/login' replace />} />
     </Routes>
     <Toaster
         position="top-right"
