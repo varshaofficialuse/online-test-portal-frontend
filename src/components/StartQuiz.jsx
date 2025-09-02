@@ -26,7 +26,7 @@ export default function StartQuiz() {
     try {
       setLoading(true);
       const res = await axios.get(
-        `${API_URL}quiz/${noteId}/quiz/${quizId}/questions?skip=0&limit=100`,
+        `${API_URL}/quiz/${noteId}/quiz/${quizId}/questions?skip=0&limit=100`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       const questionsWithId = res.data.items.map((q, idx) => ({
@@ -53,7 +53,7 @@ export default function StartQuiz() {
   const handleSubmit = async () => {
     try {
       const res = await axios.post(
-        `${API_URL}quiz/${noteId}/quiz/${quizId}/submit`,
+        `${API_URL}/quiz/${noteId}/quiz/${quizId}/submit`,
         { answers },
         { headers: { Authorization: `Bearer ${token}` } }
       );

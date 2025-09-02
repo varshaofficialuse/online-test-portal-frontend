@@ -22,7 +22,7 @@ export default function Sessions() {
   const fetchTests = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${API_URL}tests/`, {
+      const res = await axios.get(`${API_URL}/tests/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setTests(res.data);
@@ -42,12 +42,12 @@ export default function Sessions() {
   const startTest = async (test) => {
     try {
       const res = await axios.post(
-        `${API_URL}sessions/${test.id}/start`,
+        `${API_URL}/sessions/${test.id}/start`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      const qRes = await axios.get(`${API_URL}tests/${test.id}/questions`, {
+      const qRes = await axios.get(`${API_URL}/tests/${test.id}/questions`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -74,7 +74,7 @@ export default function Sessions() {
 
     try {
       await axios.post(
-        `${API_URL}sessions/${currentTest.id}/submit`,
+        `${API_URL}/sessions/${currentTest.id}/submit`,
         { answers },
         { headers: { Authorization: `Bearer ${token}` } }
       );

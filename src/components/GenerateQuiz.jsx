@@ -16,7 +16,7 @@ export default function GenerateQuiz({ testId, quizID, onGenerated }) {
     const loadingToast = toast.loading("Generating questions... This may take some time");
     try {
       const res = await axios.post(
-        `${API_URL}tests/${testId}/bulk-from-quiz`,
+        `${API_URL}/tests/${testId}/bulk-from-quiz`,
         { quiz_id: quizID }, // send in body
         { headers: { Authorization: `Bearer ${token}` } }
       );

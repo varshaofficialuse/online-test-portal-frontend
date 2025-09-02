@@ -13,7 +13,7 @@ export default function Analytics({ testId }) {
 
   const fetchAnalytics = async () => {
     try {
-      const res = await axios.get(`${API_URL}analytics/tests/${testId}`, {
+      const res = await axios.get(`${API_URL}/analytics/tests/${testId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setData(res.data);

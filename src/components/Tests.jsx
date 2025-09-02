@@ -40,7 +40,7 @@ const [quizGenerated, setQuizGenerated] = useState(false);
       const updated = {};
       for (const t of tests) {
         try {
-          const res = await axios.get(`${API_URL}tests/${t.id}/questions`, {
+          const res = await axios.get(`${API_URL}/tests/${t.id}/questions`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           updated[t.id] = res.data.length > 0; // true if questions exist
@@ -56,7 +56,7 @@ const [quizGenerated, setQuizGenerated] = useState(false);
 
   const fetchTests = async () => {
     try {
-      const res = await axios.get(`${API_URL}tests/`, {
+      const res = await axios.get(`${API_URL}/tests/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setTests(res.data);
@@ -68,7 +68,7 @@ const [quizGenerated, setQuizGenerated] = useState(false);
 
   const fetchNotes = async () => {
     try {
-      const res = await axios.get(`${API_URL}notes/`, {
+      const res = await axios.get(`${API_URL}/notes/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setNotes(res.data);
@@ -87,7 +87,7 @@ const [quizGenerated, setQuizGenerated] = useState(false);
     const loadingToast = toast.loading("Creating test...");
     try {
       const res = await axios.post(
-        `${API_URL}tests/create`,
+        `${API_URL}/tests/create`,
         {
           title,
           description,
@@ -121,7 +121,7 @@ const [quizGenerated, setQuizGenerated] = useState(false);
     if (!window.confirm("Are you sure you want to delete this test?")) return;
     const loadingToast = toast.loading("Deleting test...");
     try {
-      await axios.delete(`${API_URL}tests/${id}`, {
+      await axios.delete(`${API_URL}/tests/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setTests(tests.filter((t) => t.id !== id));
@@ -135,7 +135,7 @@ const [quizGenerated, setQuizGenerated] = useState(false);
   };
   const fetchQuizzes = async () => {
     try {
-      const res = await axios.get(`${API_URL}quiz/quizzes/`, {
+      const res = await axios.get(`${API_URL}/quiz/quizzes/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setQuizzes(res.data);

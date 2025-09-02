@@ -16,7 +16,7 @@ export default function Notes() {
 
   const fetchNotes = async () => {
     try {
-      const res = await axios.get(`${API_URL}notes/`, {
+      const res = await axios.get(`${API_URL}/notes/`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setNotes(res.data);
@@ -52,7 +52,7 @@ export default function Notes() {
     if (!window.confirm("Are you sure you want to delete this note?")) return;
     const loadingToast = toast.loading("Deleting note...");
     try {
-      await axios.delete(`${API_URL}notes/${id}`, {
+      await axios.delete(`${API_URL}/notes/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setNotes(notes.filter(n => n.id !== id));

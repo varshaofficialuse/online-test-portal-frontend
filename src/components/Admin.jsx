@@ -24,7 +24,7 @@ export default function Admin() {
     const loadingToast = toast.loading("Creating admin...");
 
     try {
-      const res = await axios.post(`${API_URL}auth/admin/create/`, { name, email, password }, {
+      const res = await axios.post(`${API_URL}/auth/admin/create/`, { name, email, password }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
