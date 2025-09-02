@@ -48,7 +48,7 @@ export default function Quizzes({ testId }) {
       setNotes(res.data);
     } catch (err) {
       console.error(err);
-      if (role.toLowerCase() !== "superadmin" || role.toLowerCase() !== "admin"){
+      if (role.toLowerCase() !== "superadmin" && role.toLowerCase() !== "admin"){
       toast.error("Failed to fetch notes");
     }}
   };
