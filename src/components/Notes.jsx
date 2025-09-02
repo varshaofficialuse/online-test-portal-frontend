@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import '../styles/notes.css';
 
 // const API_URL = "http://127.0.0.1:8000/";
-const API_URL = process.env.API_URL;
+const API_URL = process.env.REACT_APP_API_URL;
 
 export default function Notes() {
   const token =useSelector((s) => s.auth.accessToken);

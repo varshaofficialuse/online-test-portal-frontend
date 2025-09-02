@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { scheduleTokenRefresh, clearTokenRefresh } from '../utils/autoRefresh';
 
 // const API_URL = "http://127.0.0.1:8000";
-const API_URL = process.env.API_URL;
+const API_URL = process.env.REACT_APP_API_URL;
 
 const initialState = {
   accessToken: localStorage.getItem("access_token") || null,

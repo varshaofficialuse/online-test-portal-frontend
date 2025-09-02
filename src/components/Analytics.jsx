@@ -5,7 +5,7 @@ import HighchartsReact from "highcharts-react-official";
 import { useSelector } from "react-redux";
 
 // const API_URL = "http://127.0.0.1:8000/";
-const API_URL =process.env.API_URL;
+const API_URL =process.env.REACT_APP_API_URL;
 
 export default function Analytics({ testId }) {
   const token = useSelector((s) => s.auth.accessToken);
