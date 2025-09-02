@@ -8,7 +8,8 @@ import UpdateTestForm from "./UpdateTestForm";
 import GenerateQuiz from "./GenerateQuiz";
 
 
-const API_URL = "http://127.0.0.1:8000/";
+// const API_URL = "http://127.0.0.1:8000/";
+const API_URL = "https://online-test-portal-extended.up.railway.app";
 
 export default function Tests() {
   const token = useSelector((s) => s.auth.accessToken);

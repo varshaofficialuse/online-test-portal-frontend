@@ -5,7 +5,8 @@ import toast from 'react-hot-toast';
 
 import '../styles/notes.css';
 
-const API_URL = "http://127.0.0.1:8000/";
+// const API_URL = "http://127.0.0.1:8000/";
+const API_URL = "https://online-test-portal-extended.up.railway.app";
 
 export default function Notes() {
   const token =useSelector((s) => s.auth.accessToken);
