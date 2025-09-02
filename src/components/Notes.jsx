@@ -33,7 +33,7 @@ export default function Notes() {
     }
     const loadingToast = toast.loading("Adding note...");
     try {
-      const res = await axios.post(`${API_URL}notes/`, { title, content }, {
+      const res = await axios.post(`${API_URL}/notes/`, { title, content }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setNotes([...notes, res.data]);

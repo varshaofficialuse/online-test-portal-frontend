@@ -113,6 +113,7 @@ export default function Sessions() {
               <div key={t.id} className="test-card">
                 <div style={{ width: "100%" }}>
                   <div><h5 className="see-test">{t.title}</h5></div>
+                  <div><h5 className="">{t.description}</h5></div>
                   
                   <p>
                     <strong>Start:</strong> {startTime.toLocaleString()}
