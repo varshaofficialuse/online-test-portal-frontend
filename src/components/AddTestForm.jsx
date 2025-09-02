@@ -13,7 +13,7 @@ const AddQuestionsForm = ({ testID, closeForm }) => {
 
   const api = axios.create({
     // baseURL: "http://127.0.0.1:8000",
-    baseURL:"https://online-test-portal-extended.up.railway.app",
+    baseURL: process.env.API_URL,
     headers: { Authorization: `Bearer ${token}` },
   });
 
